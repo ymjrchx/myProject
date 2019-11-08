@@ -1,0 +1,17 @@
+server:
+  port: 20015
+spring:
+# \u540C\u6B65iboss\u7528\u6237\u7EC4\u7EC7\u67B6\u6784\u548C\u5927\u6570\u636E\u8D44\u6E90
+  # mq
+  rabbitmq:
+    addresses: 192.168.3.99
+    username: mq_resource_center
+    password: bCkgcb4TAERZEI70
+    port: 5672
+
+cms:
+  max-requestsize:  my test ok
+  max-Request-size: ddddgegegegs
+
+  # mybatis
+debug: true

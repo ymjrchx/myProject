@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>netty_http</groupId>
+    <artifactId>netty_http</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+    </parent>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.30.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fusesource.mqtt-client</groupId>
+            <artifactId>mqtt-client</artifactId>
+            <version>1.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.40</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.5.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.1.8.RELEASE</version>
+        </dependency>
+
+            <!--net/dgg/framework/tac-->
+        <dependency>
+            <groupId>net.dgg.framework.tac.auth</groupId>
+            <artifactId>dgg-framework-auth</artifactId>
+            <version>1.0.0-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>dggcloud-dggbase</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>crypto-spring-boot-starter</artifactId>
+            <version>1.0.0-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.cache</groupId>
+            <artifactId>dgg-framework-cache</artifactId>
+            <version>1.0.3-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>dggcloud-dggbase</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-crypto</artifactId>
+            <version>1.0.1-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-elasticsearch</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-hbase</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-kafka-nosecurity</artifactId>
+            <version>1.4.8</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-kafka</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-mongodbutils</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-mongodbutils2.0</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-rabbitmq</artifactId>
+            <version>1.0.1-RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-redisutils</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-redisutils2.0</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.message</groupId>
+            <artifactId>dgg-framework-message</artifactId>
+            <version>1.0.2-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac.mongo</groupId>
+            <artifactId>dgg-framework-mongo</artifactId>
+            <version>1.0.2-RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.mq</groupId>
+            <artifactId>dgg-framework-mq</artifactId>
+            <version>1.0.3-RELEASE</version>
+        </dependency>
+
+
+     <!--   <dependency>
+            <groupId>net.dgg.framework.tac.parent</groupId>
+            <artifactId>dgg-framework-parent</artifactId>
+            <version>1.0.6-RELEASE</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.dgg.framework.tac.redis</groupId>
+            <artifactId>dgg-framework-redis</artifactId>
+            <version>1.0.7-RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.redisutils</groupId>
+            <artifactId>dgg-framework-redisutils</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac.spring</groupId>
+            <artifactId>dgg-framework-spring</artifactId>
+            <version>1.0.2-RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.stepcache</groupId>
+            <artifactId>dgg-framework-stepcache</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac.test</groupId>
+            <artifactId>dgg-framework-test</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac.utils</groupId>
+            <artifactId>dgg-framework-utils</artifactId>
+            <version>1.0.5-RELEASE</version>
+        </dependency>
+
+      <!--  net/dgg/android -->
+
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>fastjson-converter</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+
+
+
+
+<!--        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>imageloader-glide</artifactId>
+            <version>10.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>oa-kernel</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>oa-router</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>oa-widget</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>router-service</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>sdk-base</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.android</groupId>
+            <artifactId>sdk-core</artifactId>
+            <version>1.0.4</version>
+        </dependency>-->
+
+       <!-- net/dgg/baseservice-->
+        <dependency>
+            <groupId>net.dgg.baseservice</groupId>
+            <artifactId>message.messagecenter.sdk</artifactId>
+            <version>0.5.4</version>
+        </dependency>
+
+
+    <!--    <dependency>
+            <groupId>net.dgg.core</groupId>
+            <artifactId>dgg-core-message</artifactId>
+            <version>RELEASE</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.dgg.crypto</groupId>
+            <artifactId>dgg-crypto</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>dggencryption</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.elastic.simple.job.client</groupId>
+            <artifactId>dgg-elastic-simple-job-client</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.fdfs</groupId>
+            <artifactId>dgg-fdfs-client</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>hr-common</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+
+    <!--    <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>hr-parent</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>hr-web</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.httpclient</groupId>
+            <artifactId>dgg-httpclient</artifactId>
+            <version>1.0.0-RELEASE</version>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>net.dgg.iboss.parent</groupId>
+            <artifactId>iboss-cloud-parent</artifactId>
+            <version>3.0.2.RELEASE</version>
+        </dependency>-->
+
+
+   <!--     <dependency>
+            <groupId>net.dgg.iboss.parent</groupId>
+            <artifactId>iboss-parent</artifactId>
+            <version>1.0.2-CLOUD</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.dgg.framework.tac.mongo</groupId>
+            <artifactId>dgg-framework-mongo</artifactId>
+            <version>1.0.2-RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.message.sdk</groupId>
+            <artifactId>dgg-message-sdk</artifactId>
+            <version>2.0.19-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>minidao-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg</groupId>
+            <artifactId>hr-common</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+      <!--  <dependency>
+            <groupId>net.dgg.oahr.parent</groupId>
+            <artifactId>oahr-parent</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>-->
+
+
+<!--        <dependency>
+            <groupId>net.dgg.resource.center.parent</groupId>
+            <artifactId>resource-center-parent</artifactId>
+            <version>1.0.4-RELEASE</version>
+        </dependency>-->
+        <dependency>
+            <groupId>net.dgg.resource.center</groupId>
+            <artifactId>resource-center-common</artifactId>
+            <version>1.0.13-RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.resource.center</groupId>
+            <artifactId>resource-center-service</artifactId>
+            <version>1.1.02-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.tac.bus.portal.common</groupId>
+            <artifactId>dgg-portal-common</artifactId>
+            <version>1.0.8.6</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.tac.crypto</groupId>
+            <artifactId>dgg-common-crypto</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.tac.util</groupId>
+            <artifactId>dgg-common-util</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.dgg.tac.util</groupId>
+            <artifactId>dgg-tac-util</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.33</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.noka</groupId>
+            <artifactId>spring-boot-starter-filecache</artifactId>
+            <version>1.0.04</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.noka</groupId>
+            <artifactId>spring-boot-starter-noka</artifactId>
+            <version>6.0.2-test</version>
+        </dependency>
+      <!--  <dependency>
+            <groupId>com.qiyuesuo.sdk</groupId>
+            <artifactId>sdk-java</artifactId>
+            <version>2.6.1</version>
+        </dependency>-->
+
+
+        <dependency>
+            <groupId>com.heanbian</groupId>
+            <artifactId>heanbian-core</artifactId>
+            <version>1.0.2-dgg</version>
+        </dependency>
+        <dependency>
+            <groupId>com.heanbian</groupId>
+            <artifactId>heanbian-crypto</artifactId>
+            <version>4.0.8-dgg</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-core</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-jobclient</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-jobtracker</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-monitor</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-spring</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts-startup</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ltsopensource</groupId>
+            <artifactId>lts</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-redisutils</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.dgg.framework.tac</groupId>
+            <artifactId>dgg-framework-redisutils2.0</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alipay</groupId>
+            <artifactId>log1-jar</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alipay</groupId>
+            <artifactId>sdk-jar</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.baidubce</groupId>
+            <artifactId>bce-java-sdk</artifactId>
+            <version>0.10.49</version>
+        </dependency>
+
+
+
+
+
+
+        <dependency>
+            <groupId>net.fblock</groupId>
+            <artifactId>core</artifactId>
+            <version>0.3.27</version>
+        </dependency>
+        <dependency>
+            <groupId>net.fblock</groupId>
+            <artifactId>auth</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.fblock</groupId>
+            <artifactId>applog</artifactId>
+            <version>1.0.02</version>
+        </dependency>
+        <dependency>
+            <groupId>net.fblock</groupId>
+            <artifactId>fblock-spring-boot-starter-applog</artifactId>
+            <version>1.0.02</version>
+        </dependency>
+
+
+     <!--   <dependency>
+            <groupId>net.fblock</groupId>
+            <artifactId>data.synchronous</artifactId>
+            <version>0.6.0.RELEASE</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-kafka</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>

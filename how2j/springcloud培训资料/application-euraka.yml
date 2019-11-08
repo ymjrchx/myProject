@@ -1,0 +1,29 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xdxy-cloud:B49EE0EC6AB68D14325926300F8E4750@localhost:39419/eureka/
+    #表示是否将自己注册到eureka server，因为要构建集群环境，需要将自己注册到集群环境，默认为true，
+    register-with-eureka: true
+    #是否从EurekaServer获取注册信息，如果是单点服务设置false,如果集群设置true
+    fetch-registry: true
+  server:
+    #eureka-server保护机制,生产环境请设置true
+    enable-self-preservation: true
+    #eureka-server清除无效节点的时间默认60s(注意默认值单位为ms(60000)
+    eviction-interval-timer-in-ms: 20000
+    #留存的服务示例低于多少比例进入保护模式
+    renewal-percent-threshold: 0.5
+  instance:
+    hostname: localhost
+     #使用ip替代实例名
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+spring:
+  application:
+    name: eureka
+  security:
+    user:
+      name: xdxy-cloud
+      password: B49EE0EC6AB68D14325926300F8E4750
+server:
+  port: 39419

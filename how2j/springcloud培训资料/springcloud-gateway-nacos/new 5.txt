@@ -1,0 +1,57 @@
+[{
+    "filters": [{
+         "args": {
+            "parts": "1"
+        },
+        "name": "StripPrefix"
+    }],
+    "id": "ltc-course",
+    "order": 0,
+    "predicates": [{
+        "args": {
+            "pattern": "/ltc-course/**"
+        },
+        "name": "Path"
+    }],
+    "uri": "lb://ltc-course"
+},{
+    "filters": [{
+         "args": {
+            "parts": "1"
+        },
+        "name": "StripPrefix"
+    }],
+    "id": "ltc-task",
+    "order": 0,
+    "predicates": [{
+        "args": {
+            "pattern": "/ltc-task/**"
+        },
+        "name": "Path"
+    }],
+    "uri": "lb://ltc-task"
+},{
+    "filters": [{
+         "args": {
+            "parts": "1"
+        },
+        "name": "StripPrefix"
+    },{
+        "name": "JsonRateLimiter",
+          "args":{
+            "redis-rate-limiter.replenishRate": 10000,
+            "redis-rate-limiter.burstCapacity": 10000,
+            "key-resolver": "#{@ipKeyResolver}"
+          }
+    }],
+    "id": "school-server",
+    "order": 0,
+    "predicates": [{
+        "args": {
+            "pattern": "/school-server/**"
+        },
+        "name": "Path"
+    },{"name":"ReadBody","args":{"inClass":"#{@readBodyClass}","predicate":"#{@readBodyPredicate}"}}],
+    "uri": "lb://school-server"
+}
+]

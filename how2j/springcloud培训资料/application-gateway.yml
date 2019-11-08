@@ -1,0 +1,111 @@
+spring:
+  application:
+    name: ltc-api-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://xdxy-cloud:B49EE0EC6AB68D14325926300F8E4750@localhost:39419/eureka/
+  instance:
+    prefer-ip-address: true
+#    leaseRenewalIntervalInSeconds: 10
+#    health-check-url-path: /actuator/health
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
+zuul:
+  #全部服务忽略敏感头,(全部服务都可传递cookie)
+  #  prefix: api
+  sensitive-headers: '*'
+  routes:
+    myProduct:
+      path: /myProduct/**
+      serviceId: product
+      #设置空 不过滤 Cookie
+      sensitiveHeaders:
+    order:
+      path: /order/**
+      serviceId: order
+    user-server:
+      path: /dgg/oauth/**
+      serviceId: user
+    ltc-course:
+      path: /ltc-course/**
+      serviceId: ltc-course
+    ltc-base:
+      path: /ltc-base/**
+      serviceId: ltc-base
+    ltc-exam:
+      path: /ltc-exam/**
+      serviceId: ltc-exam
+    ltc-task:
+      path: /ltc-task/**
+      serviceId: ltc-task
+  #不对外暴露的接口
+  #ignored-patterns:
+  #- /**/product/listForOrder
+  #饥饿加载模式,饥饿加载模式会在初始化的时候初始相关转发服务的参数。避免ribbon在初始化转发服务相关参数造成的第一次请求缓慢
+  ribbon:
+    eager-load:
+      enabled: true
+    #spring-cloud-zuul-ratelimit限流方式,会有性能折损
+  #信号量 Zuul中采用的是信号量的资源隔离策略，默认semaphore的值为100，当请求超过这个值时就会被立刻拒绝
+  semaphore:
+    max-semaphores: 1000
+#  ratelimit:
+#    #限流开关
+#    enabled: true
+#    #存储方式
+#    policy-list:
+#      #路由Id,不是服务Id
+#      user-server:
+#        # 参数 limit: 10 refresh-interval: 1 在时间为1秒的时间窗口内的请求超过10次就抛出限流异常
+#        #optional - request number limit per refresh interval window (in seconds)
+#        - limit: 1000
+#          #optional - request time limit per refresh interval window (in seconds)
+#          #每个请求的时间限制(秒)
+#          quota: 1
+#          #default value (in seconds)
+#          refresh-interval: 1
+#          #限流方式 USER 根据用户；ORIGIN 原始请求；URL 请求地址
+#          type:
+#            - ORIGIN
+#    add-response-headers: false
+#    repository: REDIS
+feign:
+  hystrix:
+    enabled: true
+#security:
+#  oauth2:
+#    client:
+#      ##网关的地址
+#      access-token-uri: http://localhost:8280/uaa/oauth/token
+#      user-authorization-uri: http://localhost:8280/uaa/oauth/authorize
+#      client-id: client_test
+#      client-secret: secret_test
+#    resource:
+#      user-info-uri:  http://localhost:8280/uaa/user
+#      prefer-token-info: false
+ribbon:
+  ConnectTimeout: 30000
+  ReadTimeout: 30000
+  PoolMaxThreads: 2000
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
+            #默认最大信号量设置,默认100。当并发情况或者压测需要回退逻辑时.若信号量参数过小,会触发回退逻辑错误。
+          semaphore:
+            maxConcurrentRequests: 1000
+server:
+  port: 8280

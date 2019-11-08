@@ -1,0 +1,11 @@
+server:
+  port: 8010
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+management:
+  security:
+    enabled: false

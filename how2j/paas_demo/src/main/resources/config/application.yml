@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: paas-demo
+  data:
+    mongodb:
+      uri: mongodb://172.16.0.25:17017/dgg_cryption
+  redis:
+    cluster:
+      nodes: 192.168.254.131:7001,192.168.254.131:7002,192.168.254.131:7003,192.168.254.131:7004,192.168.254.131:7005,192.168.254.131:7006
+    lettuce: #连接池配置
+      pool:
+        max-idle: 30 #连接池中的最大空闲连接
+        min-idle: 10 #连接池中的最小空闲连接
+        max-active: 100 #连接池最大连接数（使用负值表示没有限制）
+        max-wait: 10000 #连接池最大阻塞等待时间（使用负值表示没有限制）
+  rabbit:
+    message:
+      #      - username: x
+      #        password: x
+      #        vhost: /
+      #        uri: x.x.x.x:5672
+      #        name: my-test001
+      - username: x
+        password: x
+        vhost: /
+        uri: x.x.x.x:5672
+        name: my-test002
+server:
+  port: 2019
+es:
+  cluster:
+    nodes: 192.168.254.126:9200
+kafka:
+  servers: 172.16.0.217:9092,172.16.0.218:9092,172.16.0.219:9092
+logging:
+  config: classpath:log4j2.xml

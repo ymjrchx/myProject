@@ -1,0 +1,39 @@
+{
+  "instanceId": "PC-20180420FSNL:eureka-client-300:5000",
+  "app": "EUREKA-CLIENT-300",
+  "appGroupName": null,
+  "ipAddr": "172.16.3.226",
+  "sid": "na",
+  "homePageUrl": "http://PC-20180420FSNL:5000/",
+  "statusPageUrl": "http://PC-20180420FSNL:5000/actuator/info",
+  "healthCheckUrl": "http://PC-20180420FSNL:5000/actuator/health",
+  "secureHealthCheckUrl": null,
+  "vipAddress": "eureka-client-300",
+  "secureVipAddress": "eureka-client-300",
+  "countryId": 1,
+  "dataCenterInfo": {
+    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+    "name": "MyOwn"
+  },
+  "hostName": "PC-20180420FSNL",
+  "status": "UP",
+  "overriddenStatus": "UNKNOWN",
+  "leaseInfo": {
+    "renewalIntervalInSecs": 30,
+    "durationInSecs": 90,
+    "registrationTimestamp": 1564539960281,
+    "lastRenewalTimestamp": 1564539960281,
+    "evictionTimestamp": 0,
+    "serviceUpTimestamp": 1564539960281
+  },
+  "isCoordinatingDiscoveryServer": false,
+  "metadata": {
+    "clientId": "123456789",
+    "management.port": "5000",
+    "clientName": "测试服务名称"
+  },
+  "lastUpdatedTimestamp": 1564539960281,
+  "lastDirtyTimestamp": 1564539960189,
+  "actionType": "ADDED",
+  "asgName": null
+}

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: 500-ribbon-order-service
+server:
+  port: 7020
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.peer1.com:8762/eureka/
+
+user:
+  service:
+    name: 400-ribbon-user-service
+    url: http://400-ribbon-user-service
+
+400-ribbon-user-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

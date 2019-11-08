@@ -1,0 +1,26 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: microservice-consumer-movie
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+management:
+  security:
+    enabled: false
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+debug: true

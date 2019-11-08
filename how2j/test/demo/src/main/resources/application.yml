@@ -1,0 +1,34 @@
+server:
+  port: 80
+spring:
+# \u540C\u6B65iboss\u7528\u6237\u7EC4\u7EC7\u67B6\u6784\u548C\u5927\u6570\u636E\u8D44\u6E90
+  # mq
+  rabbitmq:
+    addresses: 192.168.254.117
+    username: dgg
+    password: dgg962540
+    port: 5672
+  profiles:
+    active: dev
+      # 数据源配置
+  datasource:
+    druid:
+      url: jdbc:mysql://172.16.0.25:5506/db_resource_center?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&useCompression=true
+      username: ziyuan
+      password: ziyuan@962540
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  mydatesource:
+    druid1:
+      url: jdbc:mysql://118.123.22.158:5506/db_resource_center?useUnicode=true&characterEncoding=utf8
+      username: mysql_resource_center
+      password: SuLAW3593lNj7B61
+      driver-class-name: com.mysql.cj.jdbc.Driver
+cms:
+  max-requestsize:  my test ok
+  max-Request-size: ddddgegegegs
+
+  # mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/**/*Mapper.xml
+debug: true

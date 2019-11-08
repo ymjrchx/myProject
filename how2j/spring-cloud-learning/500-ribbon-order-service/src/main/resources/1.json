@@ -1,0 +1,65 @@
+{
+  "serviceId": "400-ribbon-user-service",
+  "server": {
+    "host": "PC-20180420FSNL",
+    "port": 7010,
+    "scheme": null,
+    "id": "PC-20180420FSNL:7010",
+    "zone": "defaultZone",
+    "readyToServe": true,
+    "instanceInfo": {
+      "instanceId": "PC-20180420FSNL:400-ribbon-user-service:7010",
+      "app": "400-RIBBON-USER-SERVICE",
+      "appGroupName": null,
+      "ipAddr": "172.16.3.226",
+      "sid": "na",
+      "homePageUrl": "http://PC-20180420FSNL:7010/",
+      "statusPageUrl": "http://PC-20180420FSNL:7010/actuator/info",
+      "healthCheckUrl": "http://PC-20180420FSNL:7010/actuator/health",
+      "secureHealthCheckUrl": null,
+      "vipAddress": "400-ribbon-user-service",
+      "secureVipAddress": "400-ribbon-user-service",
+      "countryId": 1,
+      "dataCenterInfo": {
+        "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+        "name": "MyOwn"
+      },
+      "hostName": "PC-20180420FSNL",
+      "status": "UP",
+      "overriddenStatus": "UNKNOWN",
+      "leaseInfo": {
+        "renewalIntervalInSecs": 30,
+        "durationInSecs": 90,
+        "registrationTimestamp": 1564569681282,
+        "lastRenewalTimestamp": 1564570491452,
+        "evictionTimestamp": 0,
+        "serviceUpTimestamp": 1564569681282
+      },
+      "isCoordinatingDiscoveryServer": false,
+      "metadata": {
+        "management.port": "7010"
+      },
+      "lastUpdatedTimestamp": 1564569681282,
+      "lastDirtyTimestamp": 1564569681253,
+      "actionType": "ADDED",
+      "asgName": null
+    },
+    "metaInfo": {
+      "serviceIdForDiscovery": "400-ribbon-user-service",
+      "serverGroup": null,
+      "instanceId": "PC-20180420FSNL:400-ribbon-user-service:7010",
+      "appName": "400-RIBBON-USER-SERVICE"
+    },
+    "alive": true,
+    "hostPort": "PC-20180420FSNL:7010"
+  },
+  "secure": false,
+  "metadata": {
+    "management.port": "7010"
+  },
+  "scheme": null,
+  "host": "PC-20180420FSNL",
+  "port": 7010,
+  "uri": "http://PC-20180420FSNL:7010",
+  "instanceId": "PC-20180420FSNL:7010"
+}

@@ -1,0 +1,33 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: school-front-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@192.168.254.142:8861/eureka/,http://admin:admin@192.168.254.143:8861/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    prefer-ip-address: true
+  #对外暴露端点,spring cloud bug与spring boot admin将依赖此节点的暴露情况。
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+ribbon:
+  eureka:
+    enabled: true
+
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  hystrix:
+    enabled: true
