@@ -1,9 +1,10 @@
 package demo.iptest.service;
 
-import com.example.demo.iptest.consultmessagemapper.ConsultMessageMapper;
-import com.example.demo.iptest.entity.ConsultIPRegion;
-import com.example.demo.iptest.entity.ConsultMessage;
-import com.example.demo.iptest.mapper.ConsultIPRegionMapper;
+
+import demo.iptest.consultmessagemapper.ConsultMessageMapper;
+import demo.iptest.entity.ConsultIPRegion;
+import demo.iptest.entity.ConsultMessage;
+import demo.iptest.mapper.ConsultIPRegionMapper;
 import net.dgg.resource.center.common.utils.PhoneSearchFast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
