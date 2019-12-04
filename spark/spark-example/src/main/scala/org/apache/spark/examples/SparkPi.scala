@@ -18,15 +18,16 @@
 // scalastyle:off println
 package org.apache.spark.examples
 
-import scala.math.random
+import org.apache.spark.api.java.JavaSparkContext
 
+import scala.math.random
 import org.apache.spark.sql.SparkSession
 
 /** Computes an approximation to pi */
 object SparkPi {
   def main(args: Array[String]) {
     val spark = SparkSession
-      .builder
+      .builder.master("local[1]")
       .appName("Spark Pi")
       .getOrCreate()
     val slices = if (args.length > 0) args(0).toInt else 2

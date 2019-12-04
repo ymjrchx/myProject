@@ -19,6 +19,7 @@ package org.apache.spark.examples;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.SparkSession;
 import scala.Tuple2;
 
@@ -27,19 +28,22 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public final class JavaWordCount {
-  private static final Pattern SPACE = Pattern.compile(" ");
+  private static final Pattern SPACE = Pattern.compile("\u0001");
 
   public static void main(String[] args) throws Exception {
 
+      args = new String[1];
+      args[0] = "D:\\dgg\\myProject\\spark\\spark-example\\src\\main\\resources\\kv1.txt";
     if (args.length < 1) {
       System.err.println("Usage: JavaWordCount <file>");
       System.exit(1);
     }
 
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaWordCount")
       .getOrCreate();
+
 
     JavaRDD<String> lines = spark.read().textFile(args[0]).javaRDD();
 
@@ -55,4 +59,15 @@ public final class JavaWordCount {
     }
     spark.stop();
   }
+
+
+  public static class GetLength implements Function<String, Integer>{
+
+      @Override
+      public Integer call(String s) throws Exception {
+          return s.length();
+      }
+  }
 }
+
+
