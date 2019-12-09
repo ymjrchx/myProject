@@ -122,13 +122,13 @@ public class JavaUserDefinedTypedAggregation {
 
   public static void main(String[] args) {
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local[1]")
       .appName("Java Spark SQL user-defined Datasets aggregation example")
       .getOrCreate();
 
     // $example on:typed_custom_aggregation$
     Encoder<Employee> employeeEncoder = Encoders.bean(Employee.class);
-    String path = "examples/src/main/resources/employees.json";
+    String path = "src/main/resources/employees.json";
     Dataset<Employee> ds = spark.read().json(path).as(employeeEncoder);
     ds.show();
     // +-------+------+

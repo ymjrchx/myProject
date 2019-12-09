@@ -99,7 +99,7 @@ public class JavaUserDefinedUntypedAggregation {
 
   public static void main(String[] args) {
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local[1]")
       .appName("Java Spark SQL user-defined DataFrames aggregation example")
       .getOrCreate();
 
@@ -107,7 +107,7 @@ public class JavaUserDefinedUntypedAggregation {
     // Register the function to access it
     spark.udf().register("myAverage", new MyAverage());
 
-    Dataset<Row> df = spark.read().json("examples/src/main/resources/employees.json");
+    Dataset<Row> df = spark.read().json("src/main/resources/employees.json");
     df.createOrReplaceTempView("employees");
     df.show();
     // +-------+------+
