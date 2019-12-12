@@ -97,8 +97,9 @@ public final class JavaLogQuery {
   }
 
   public static void main(String[] args) {
+      args = new String[2];
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaLogQuery")
       .getOrCreate();
 

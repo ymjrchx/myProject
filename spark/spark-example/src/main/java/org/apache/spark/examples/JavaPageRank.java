@@ -72,7 +72,7 @@ public final class JavaPageRank {
     showWarning();
 
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaPageRank")
       .getOrCreate();
 

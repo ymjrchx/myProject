@@ -59,8 +59,10 @@ public final class JavaTC {
   }
 
   public static void main(String[] args) {
+      args = new String[2];
+      args[0] = "10";
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaTC")
       .getOrCreate();
 

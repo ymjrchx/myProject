@@ -40,7 +40,7 @@ public final class JavaWordCount {
   public static void main(String[] args) throws Exception {
 
       args = new String[1];
-      args[0] = "D:\\dgg\\myProject\\spark\\spark-example\\src\\main\\resources\\kv1.txt";
+      args[0] = "src\\main\\resources\\kv1.txt";
     if (args.length < 1) {
       System.err.println("Usage: JavaWordCount <file>");
       System.exit(1);
