@@ -41,6 +41,10 @@ import java.util.Arrays;
 public final class JavaStructuredNetworkWordCount {
 
   public static void main(String[] args) throws Exception {
+      args = new String[2];
+      args[0] = "127.0.0.1";
+      args[1] = "8090";
+
     if (args.length < 2) {
       System.err.println("Usage: JavaStructuredNetworkWordCount <hostname> <port>");
       System.exit(1);
@@ -50,7 +54,7 @@ public final class JavaStructuredNetworkWordCount {
     int port = Integer.parseInt(args[1]);
 
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaStructuredNetworkWordCount")
       .getOrCreate();
 

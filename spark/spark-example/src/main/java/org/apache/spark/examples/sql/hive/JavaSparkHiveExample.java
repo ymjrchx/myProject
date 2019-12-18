@@ -60,14 +60,14 @@ public class JavaSparkHiveExample {
     // warehouseLocation points to the default location for managed databases and tables
     String warehouseLocation = new File("spark-warehouse").getAbsolutePath();
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("Java Spark Hive Example")
       .config("spark.sql.warehouse.dir", warehouseLocation)
       .enableHiveSupport()
       .getOrCreate();
 
     spark.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive");
-    spark.sql("LOAD DATA LOCAL INPATH 'examples/src/main/resources/kv1.txt' INTO TABLE src");
+    spark.sql("LOAD DATA LOCAL INPATH 'src/main/resources/kv1.txt' INTO TABLE src");
 
     // Queries are expressed in HiveQL
     spark.sql("SELECT * FROM src").show();

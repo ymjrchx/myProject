@@ -100,7 +100,7 @@ public class JavaSparkSQLExample {
 
   private static void runBasicDataFrameExample(SparkSession spark) throws AnalysisException {
     // $example on:create_df$
-    Dataset<Row> df = spark.read().json("D:\\dgg\\myProject\\spark\\spark-example\\src\\main\\resources\\people.json");
+    Dataset<Row> df = spark.read().json("src\\main\\resources\\people.json");
 
     // Displays the content of the DataFrame to stdout
     df.show();
@@ -226,11 +226,12 @@ public class JavaSparkSQLExample {
     Dataset<Integer> transformedDS = primitiveDS.map(
         (MapFunction<Integer, Integer>) value -> value + 1,
         integerEncoder);
-    transformedDS.collect(); // Returns [2, 3, 4]
+      transformedDS.collect();// Returns [2, 3, 4]
 
-    // DataFrames can be converted to a Dataset by providing a class. Mapping based on name
+      // DataFrames can be converted to a Dataset by providing a class. Mapping based on name
     String path = "D:\\dgg\\myProject\\spark\\spark-example\\src\\main\\resources\\people.json";
-    Dataset<Person> peopleDS = spark.read().json(path).as(personEncoder);
+      Dataset<Row> json = spark.read().json(path);
+      Dataset<Person> peopleDS = spark.read().json(path).as(personEncoder);
     peopleDS.show();
     // +----+-------+
     // | age|   name|

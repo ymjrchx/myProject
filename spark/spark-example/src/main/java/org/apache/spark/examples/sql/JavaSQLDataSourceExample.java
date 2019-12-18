@@ -19,10 +19,8 @@ package org.apache.spark.examples.sql;
 // $example on:schema_merging$
 
 import org.apache.spark.api.java.function.MapFunction;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Encoders;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.sql.*;
+import sun.plugin.javascript.navig.Array;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -99,10 +97,10 @@ public class JavaSQLDataSourceExample {
       .config("spark.some.config.option", "some-value")
       .getOrCreate();
 
-    runBasicDataSourceExample(spark);
+   /* runBasicDataSourceExample(spark);
     runBasicParquetExample(spark);
     runParquetSchemaMergingExample(spark);
-    runJsonDatasetExample(spark);
+    runJsonDatasetExample(spark);*/
     runJdbcDatasetExample(spark);
 
     spark.stop();
@@ -110,13 +108,15 @@ public class JavaSQLDataSourceExample {
 
   private static void runBasicDataSourceExample(SparkSession spark) {
     // $example on:generic_load_save_functions$
-    Dataset<Row> usersDF = spark.read().load("src/main/resources/users.parquet");
-    usersDF.select("name", "favorite_color").write().save("namesAndFavColors.parquet");
+    Dataset<Row> usersDF = spark.read().load("src/main/resources/users.parquet").cache();
+    usersDF.select("name", "favorite_color").write().mode(SaveMode.Append).save("namesAndFavColors.parquet");
+    usersDF.select("name", "favorite_color").write().mode(SaveMode.Append).json("namesAndFavColors.json");
     // $example off:generic_load_save_functions$
     // $example on:manual_load_options$
     Dataset<Row> peopleDF =
-      spark.read().format("json").load("src/main/resources/people.json");
+      spark.read().format("json").load("src/main/resources/people.json").cache();
     peopleDF.select("name", "age").write().format("parquet").save("namesAndAges.parquet");
+    peopleDF.select("name", "age").write().format("json").save("namesAndAges.json");
     // $example off:manual_load_options$
     // $example on:manual_load_options_csv$
     Dataset<Row> peopleDFCsv = spark.read().format("csv")
@@ -134,6 +134,7 @@ public class JavaSQLDataSourceExample {
     // $example on:direct_sql$
     Dataset<Row> sqlDF =
       spark.sql("SELECT * FROM parquet.`src/main/resources/users.parquet`");
+    sqlDF.show();
     // $example off:direct_sql$
     // $example on:write_sorting_and_bucketing$
     peopleDF.write().bucketBy(42, "name").sortBy("age").saveAsTable("people_bucketed");
@@ -146,7 +147,7 @@ public class JavaSQLDataSourceExample {
       .save("namesPartByColor.parquet");
     // $example off:write_partitioning$
     // $example on:write_partition_and_bucket$
-    peopleDF
+      usersDF
       .write()
       .partitionBy("favorite_color")
       .bucketBy(42, "name")
@@ -270,34 +271,50 @@ public class JavaSQLDataSourceExample {
     // Loading data from a JDBC source
     Dataset<Row> jdbcDF = spark.read()
       .format("jdbc")
-      .option("url", "jdbc:postgresql:dbserver")
-      .option("dbtable", "schema.tablename")
-      .option("user", "username")
-      .option("password", "password")
+      .option("url", "jdbc:mysql://127.0.0.1:3306/mywork?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai")  //jdbc:mysql:/127.0.0.1:3306
+      .option("driver","com.mysql.jdbc.Driver")
+      .option("dbtable", "user")
+      .option("user", "root")
+      .option("password", "root")
       .load();
+    jdbcDF.printSchema();
 
-    Properties connectionProperties = new Properties();
-    connectionProperties.put("user", "username");
-    connectionProperties.put("password", "password");
+      jdbcDF.show();
+
+
+
+      List<Row> take = jdbcDF.javaRDD().take(100);
+      System.out.println(take);
+
+      Properties connectionProperties = new Properties();
+    connectionProperties.put("user", "root");
+    connectionProperties.put("password", "root");
+    connectionProperties.put("driver","com.mysql.jdbc.Driver");
+
+
     Dataset<Row> jdbcDF2 = spark.read()
-      .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties);
+      .jdbc("jdbc:mysql://127.0.0.1:3306/mywork?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "book", connectionProperties);
+
+    jdbcDF2.printSchema();
+    jdbcDF2.show();
 
     // Saving data to a JDBC source
-    jdbcDF.write()
+    jdbcDF.write().mode(SaveMode.Append)
       .format("jdbc")
-      .option("url", "jdbc:postgresql:dbserver")
-      .option("dbtable", "schema.tablename")
-      .option("user", "username")
-      .option("password", "password")
+      .option("url", "jdbc:mysql://127.0.0.1:3306/mywork?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai")
+      .option("dbtable", "user1")
+      .option("driver","com.mysql.jdbc.Driver")
+      .option("user", "root")
+      .option("password", "root")
       .save();
 
-    jdbcDF2.write()
-      .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties);
+    jdbcDF2.write().mode(SaveMode.Ignore)
+      .jdbc("jdbc:mysql://127.0.0.1:3306/mywork?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "book", connectionProperties);
 
     // Specifying create table column data types on write
     jdbcDF.write()
-      .option("createTableColumnTypes", "name CHAR(64), comments VARCHAR(1024)")
-      .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties);
+      .option("createTableColumnTypes", "name CHAR(64), pwd VARCHAR(1024)")
+      .jdbc("jdbc:mysql://127.0.0.1:3306/mywork?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "user2", connectionProperties);
     // $example off:jdbc_dataset$
   }
 }

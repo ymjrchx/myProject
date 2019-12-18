@@ -62,7 +62,7 @@ public final class JavaStructuredKafkaWordCount {
     String topics = args[2];
 
     SparkSession spark = SparkSession
-      .builder()
+      .builder().master("local")
       .appName("JavaStructuredKafkaWordCount")
       .getOrCreate();
 
