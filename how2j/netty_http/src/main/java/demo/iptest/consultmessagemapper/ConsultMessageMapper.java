@@ -1,8 +1,8 @@
 package demo.iptest.consultmessagemapper;
 
 
-import com.example.demo.iptest.entity.ConsultIPRegion;
-import com.example.demo.iptest.entity.ConsultMessage;
+import demo.iptest.entity.ConsultIPRegion;
+import demo.iptest.entity.ConsultMessage;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package demo.controller;
 
-import com.example.demo.callback.CallBackSender;
-import com.example.demo.hello.HelloReceiver1;
-import com.example.demo.hello.HelloSender1;
+import demo.callback.CallBackSender;
+import demo.hello.HelloReceiver1;
+import demo.hello.HelloSender1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
