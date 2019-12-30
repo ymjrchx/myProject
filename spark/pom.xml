@@ -23,6 +23,7 @@
         <module>sparkstreaming_statefulWordCount</module>
         <module>sparkstreaming_windowWordCount</module>
         <module>sparkgraphx_helloworld</module>
+        <module>spark-example</module>
     </modules>
 
     <properties>
@@ -62,7 +63,7 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
+           <!-- <scope>provided</scope>-->
         </dependency>
     </dependencies>
 

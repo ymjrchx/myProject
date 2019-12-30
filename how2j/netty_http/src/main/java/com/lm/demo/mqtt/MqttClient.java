@@ -23,7 +23,8 @@ public class MqttClient {
         MqttClientHandler clientHandler = new MqttClientHandler();
         EventLoopGroup eventExecutors = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
-        ChannelFuture sync = bootstrap.group(eventExecutors).channel(NioSocketChannel.class)
+        ChannelFuture sync = bootstrap.group(eventExecutors)
+                .channel(NioSocketChannel.class)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
@@ -33,7 +34,7 @@ public class MqttClient {
                         pipeline.addLast("handler", clientHandler);
 
                     }
-                }).connect(new InetSocketAddress("172.16.2.25", 18384)).sync();
+                }).connect(new InetSocketAddress("172.16.74.106", 18384)).sync();
         sync.addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture future) throws Exception {

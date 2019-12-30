@@ -27,7 +27,8 @@ public class MqttServer {
         NioEventLoopGroup m_bossGroup = new NioEventLoopGroup();//接收请求
         NioEventLoopGroup m_workerGroup = new NioEventLoopGroup();//处理接收的请求
         try {
-            b.group(m_bossGroup, m_workerGroup).channel(NioServerSocketChannel.class)
+                   b.group(m_bossGroup, m_workerGroup)
+                    .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
@@ -40,7 +41,8 @@ public class MqttServer {
                     .option(ChannelOption.SO_BACKLOG, 512)//缓存
                     .option(ChannelOption.SO_REUSEADDR, true)
                     .childOption(ChannelOption.TCP_NODELAY, true)
-                    .childOption(ChannelOption.SO_KEEPALIVE, true).bind(18384).sync();
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
+                           .bind(18384).sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

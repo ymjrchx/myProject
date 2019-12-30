@@ -34,7 +34,10 @@ public class Server {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            ServerBootstrap sbs = new ServerBootstrap().group(bossGroup,workerGroup).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port))
+            ServerBootstrap sbs = new ServerBootstrap()
+                    .group(bossGroup,workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .localAddress(new InetSocketAddress(port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
 
                         protected void initChannel(SocketChannel ch) throws Exception {
@@ -42,7 +45,8 @@ public class Server {
                             ch.pipeline().addLast(new ServerHandler());
                         };
 
-                    }).option(ChannelOption.SO_BACKLOG, 128)
+                    })
+                    .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
             // 绑定端口，开始接收进来的连接
             ChannelFuture future = sbs.bind(port).sync();
