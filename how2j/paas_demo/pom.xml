@@ -23,7 +23,7 @@
         <dgg-framework-kafka.version>1.5.9-RELEASE</dgg-framework-kafka.version>
         <elasticsearch.version>6.5.0</elasticsearch.version>
         <kafka.version>2.3.0</kafka.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
     <dependencies>
         <dependency>
